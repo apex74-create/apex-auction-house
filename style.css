@@ -1,0 +1,234 @@
+/* APEX AUCTION HOUSE — flavor map surface.
+   Glass House style: hero ground, framed glass sheet, sliding glass panels,
+   tile-grid lot board, detail work around the frame.
+   Livery: deep ink, ivory, auction gold. Money wears AMBER (the Amber Law).
+   Red is never used on money — or anywhere on this floor. */
+
+:root{
+  --ink:#0b0e13;
+  --ink2:#12161f;
+  --ivory:#f4efe4;
+  --ivory-dim:#cfc8b8;
+  --gold:#c9a227;
+  --gold-bright:#e8c766;
+  --amber:#f2a33c;          /* money color — calm, by law */
+  --amber-soft:#ffd9a0;
+  --glass:rgba(20,26,38,.72);
+  --glass-light:rgba(38,46,64,.55);
+  --line:rgba(201,162,39,.45);
+  --ok:#7fc97f;
+  --radius:14px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--ivory);
+  font-family:Georgia,'Times New Roman',serif;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+a{color:var(--gold-bright)}
+img{max-width:100%}
+
+/* ---------- hero ground ---------- */
+.hero-ground{
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(201,162,39,.22), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(64,84,140,.35), transparent 60%),
+    radial-gradient(700px 500px at 50% 115%, rgba(201,162,39,.12), transparent 60%),
+    linear-gradient(160deg,#0b0e13 0%,#131826 48%,#0b0e13 100%);
+}
+.hero-ground::after{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(244,239,228,.055) 1px, transparent 1px);
+  background-size:26px 26px;
+}
+
+/* ---------- weather strip ---------- */
+.strip{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:1rem;align-items:center;justify-content:space-between;
+  padding:.45rem 1rem;
+  background:rgba(9,11,16,.92);
+  border-bottom:1px solid var(--line);
+  font-family:Verdana,Geneva,sans-serif;font-size:.78rem;letter-spacing:.04em;
+  color:var(--ivory-dim);
+  backdrop-filter:blur(8px);
+}
+.strip b{color:var(--ivory);font-weight:600}
+.strip .dot{color:var(--gold)}
+
+/* ---------- framed sheet ---------- */
+.sheet{
+  max-width:1180px;margin:1.2rem auto 0;padding:0 1rem 3.2rem;
+}
+.frame{
+  position:relative;
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:2rem 1.6rem 2.4rem;
+  backdrop-filter:blur(10px);
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+.frame::before,.frame::after{
+  content:"";position:absolute;width:34px;height:34px;pointer-events:none;
+}
+.frame::before{top:8px;left:8px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.frame::after{bottom:8px;right:8px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+
+/* ---------- masthead ---------- */
+.masthead{text-align:center;padding:1.2rem .5rem 1.6rem}
+.masthead .over{
+  font-family:Verdana,Geneva,sans-serif;font-size:.72rem;letter-spacing:.42em;
+  text-transform:uppercase;color:var(--gold-bright);
+}
+.masthead h1{
+  font-size:clamp(2.1rem,6.2vw,3.9rem);line-height:1.05;font-weight:700;
+  letter-spacing:.02em;margin:.5rem 0 .4rem;
+}
+.masthead h1 .gold{color:var(--gold-bright)}
+.masthead .tag{
+  font-style:italic;color:var(--ivory-dim);font-size:clamp(1rem,2.4vw,1.2rem);
+}
+.masthead .rule{
+  width:180px;height:2px;margin:1.1rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+/* ---------- panels ---------- */
+.panel{
+  background:var(--glass-light);
+  border:1px solid rgba(201,162,39,.28);
+  border-radius:var(--radius);
+  padding:1.4rem 1.4rem 1.5rem;
+  margin-top:1.4rem;
+}
+.panel h2{
+  font-size:1.45rem;line-height:1.2;margin-bottom:.35rem;font-weight:700;
+}
+.panel h3{font-size:1.08rem;margin:.9rem 0 .3rem}
+.panel p{color:var(--ivory-dim);margin:.45rem 0}
+.panel p b,.panel li b{color:var(--ivory)}
+.panel ul{margin:.4rem 0 .4rem 1.2rem;color:var(--ivory-dim)}
+.panel li{margin:.28rem 0}
+.kicker{
+  font-family:Verdana,Geneva,sans-serif;font-size:.68rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold-bright);margin-bottom:.4rem;
+}
+
+/* sliding glass rail */
+.rail{
+  display:flex;gap:1rem;overflow-x:auto;padding:.4rem .1rem 1rem;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}
+.rail .panel{flex:0 0 min(430px,88%);scroll-snap-align:start;margin-top:.6rem}
+
+/* ---------- money (AMBER LAW) ---------- */
+.money{
+  color:var(--amber);font-weight:700;
+}
+.money-note{
+  border:1px solid rgba(242,163,60,.55);
+  background:rgba(242,163,60,.10);
+  border-radius:10px;padding:.7rem .9rem;margin:.8rem 0;
+  color:var(--amber-soft);font-size:.95rem;
+}
+.money-note b{color:var(--amber)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;margin-top:.8rem;
+  padding:.72rem 1.35rem;border-radius:999px;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  color:#181205;font-family:Verdana,Geneva,sans-serif;font-weight:700;
+  font-size:.9rem;letter-spacing:.03em;text-decoration:none;
+  border:1px solid rgba(0,0,0,.35);
+  box-shadow:0 8px 22px rgba(201,162,39,.35);
+}
+.btn.ghost{
+  background:transparent;color:var(--gold-bright);
+  border:1px solid var(--gold);box-shadow:none;
+}
+.btn.amber{
+  background:linear-gradient(180deg,#ffc06a,var(--amber));color:#241300;
+}
+
+/* ---------- lot board ---------- */
+.board{
+  display:grid;gap:1rem;margin-top:1rem;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+.lot{
+  border:1px solid rgba(201,162,39,.30);border-radius:12px;
+  background:rgba(13,17,25,.66);padding:1.1rem 1.1rem 1.2rem;
+  display:flex;flex-direction:column;gap:.35rem;min-height:210px;
+}
+.lot .lotno{
+  font-family:Verdana,Geneva,sans-serif;font-size:.66rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--gold-bright);
+}
+.lot h3{font-size:1.12rem;line-height:1.25}
+.lot p{color:var(--ivory-dim);font-size:.93rem}
+.lot .grow{flex:1}
+.lot.empty{border-style:dashed;align-items:flex-start;justify-content:center}
+.lot.empty h3{color:var(--ivory-dim)}
+.badge{
+  display:inline-block;padding:.14rem .55rem;border-radius:999px;
+  font-family:Verdana,Geneva,sans-serif;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;border:1px solid var(--gold);color:var(--gold-bright);
+  width:max-content;
+}
+.badge.live{border-color:var(--ok);color:var(--ok)}
+
+/* ---------- gates hall ---------- */
+.gates{
+  display:grid;gap:1rem;margin-top:1rem;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+}
+.gate{
+  border:1px solid rgba(201,162,39,.30);border-radius:12px;
+  background:rgba(13,17,25,.66);padding:1rem 1.1rem 1.1rem;
+  text-decoration:none;display:block;
+}
+.gate:hover{border-color:var(--gold-bright)}
+.gate .gname{color:var(--ivory);font-size:1.05rem;font-weight:700}
+.gate .gline{color:var(--ivory-dim);font-size:.9rem;margin-top:.25rem}
+.gate .ggo{color:var(--gold-bright);font-family:Verdana,Geneva,sans-serif;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-top:.55rem}
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:2rem;border-top:1px solid var(--line);padding-top:1.2rem;
+  color:var(--ivory-dim);font-size:.92rem;
+}
+footer .cols{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+footer b{color:var(--ivory)}
+.credit{
+  margin-top:1.1rem;text-align:center;font-style:italic;color:var(--ivory-dim);
+}
+.credit a{color:var(--gold-bright)}
+
+/* ---------- rubric page ---------- */
+table.factors{width:100%;border-collapse:collapse;margin:.8rem 0}
+table.factors th,table.factors td{
+  border:1px solid rgba(201,162,39,.28);padding:.55rem .7rem;text-align:left;
+  vertical-align:top;font-size:.95rem;
+}
+table.factors th{color:var(--ivory);background:rgba(13,17,25,.7)}
+table.factors td{color:var(--ivory-dim)}
+table.factors td b{color:var(--ivory)}
+
+.small{font-size:.88rem}
+.center{text-align:center}
+
+/* bottom no-fly zone: nothing actionable sits in the last band;
+   the sheet carries deep bottom padding and the footer is text only. */
+@media (max-width:640px){
+  .frame{padding:1.3rem .95rem 2rem}
+  .panel{padding:1.1rem 1rem 1.2rem}
+  .strip{font-size:.7rem;gap:.5rem}
+}
