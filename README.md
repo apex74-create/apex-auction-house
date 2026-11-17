@@ -1,3 +1,10 @@
+# Apex Auction House — Position 1 of 5: Main Hall (RUNNING)
+
+Fleet position **1 — Main Hall — RUNNING**: https://apex74-create.github.io/apex-auction-house/
+The five-position fleet and the reproduction call stand in `FLEET.md`.
+
+---
+
 # Apex Auction House
 
 The house's own auction floor for pre-built properties — a venue of
